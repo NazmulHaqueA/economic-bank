@@ -23,7 +23,49 @@
     <!-- hidden area before enter -->
 
     <div id="transaction-area">
-        <h1>transaction-area</h1>
+        <!-- <h1>transaction-area</h1> -->
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currentDeposit">00</span></h2>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$<span id="currentBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input id="depositAmount" type="text" class="form-control" placeholder="$ amount you want to deposit"><br>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="$ amount you want to withdraw"><br>
+                    <button id="addWithdraw" class="btn btn-danger">Withdraw</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -31,7 +73,7 @@
 
     <!-- our js -->
     <script>
-
+//log in button event handler
 //    pick the id and save to a variable/const 
     const loginBtn = document.getElementById("login");
     // adding event listener and passing parameter (min -2 ) to that listener
@@ -42,15 +84,61 @@
         // console.log("Ha ha ha");
 
         //hiding the elements on click
-        const loginArea = document.getElementById("login-area");
-        
+        const loginArea = document.getElementById("login-area");  
         loginArea.style.display="none";
         // showing the transaction area
         const transArea = document.getElementById("transaction-area");
-        transArea.style.display="block";
-        
-
+        transArea.style.display="block";       
     });
+
+
+    // Deposit button Event handler
+
+    const depositBtn = document.getElementById("addDeposit");
+    depositBtn.addEventListener("click",function(){
+        // const depositAmount =document.getElementById("depositAmount");
+        const depositAmount =document.getElementById("depositAmount").value;
+        // it returns string value so we need to convert to float 
+        const depositNumber = parseFloat(depositAmount);
+
+        // get current deposit & convert to float
+
+        // const currentDeposit = document.getElementById("currentDeposit").innerText;
+        // const currentNumber = parseFloat(currentDeposit);
+        // const totalDeposit = depositNumber + currentNumber;
+        // document.getElementById("currentDeposit").innerText = totalDeposit;
+
+        // after input the value we want to reset the input value
+        document.getElementById("depositAmount").value = "";
+
+
+        // we should update the Balance section too same as previous
+
+        // const currentBalance = document.getElementById("currentBalance").innerText;
+        // const currentBalanceNumber = parseFloat(currentBalance);
+        // const totalBalance = currentBalanceNumber + depositNumber;
+        // document.getElementById("currentBalance").innerText=totalBalance;
+
+
+        // function with same functionality
+        updateDepositAndBalance("currentDeposit",depositNumber);
+        updateDepositAndBalance("currentBalance",depositNumber);
+
+        function updateDepositAndBalance(id,depositNumber){
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
+            const totalAmount = depositNumber + currentNumber;
+            document.getElementById(id).innerText = totalAmount;
+        }
+    });
+
+    // withdraw event handler
+
+    
+
+
+
+
     </script>
 </body>
 </html>
