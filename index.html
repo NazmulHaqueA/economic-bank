@@ -89,7 +89,7 @@
         // showing the transaction area
         const transArea = document.getElementById("transaction-area");
         transArea.style.display="block";       
-    });
+    })
 
 
     // Deposit button Event handler
@@ -121,21 +121,45 @@
 
 
         // function with same functionality
-        updateDepositAndBalance("currentDeposit",depositNumber);
-        updateDepositAndBalance("currentBalance",depositNumber);
+        updateDepositWithdrawBalance("currentDeposit",depositNumber);
+        updateDepositWithdrawBalance("currentBalance",depositNumber);
 
-        function updateDepositAndBalance(id,depositNumber){
+    });
+
+    // withdraw event button handler
+
+    const withBtn = document.getElementById("addWithdraw");
+    withBtn.addEventListener("click",function(){
+        const withAmount = document.getElementById("withdrawAmount").value;
+        const withNum = parseFloat(withAmount);
+        // const depositNumber = parseFloat(withAmount);
+        document.getElementById("withdrawAmount").value = "";
+
+        updateDepositWithdrawBalance("currentWithdraw",withNum);
+        updateDepositWithdrawBalance("currentBalance", -1 * withNum);
+
+        // updateDepositWithdrawBalance("currentWithdraw",depositNumber);
+        // updateDepositWithdrawBalance("currentBalance", -1 * depositNumber);
+
+    });
+
+    
+// FUNCTION
+
+
+
+function updateDepositWithdrawBalance(id,depositNumber){
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
             const totalAmount = depositNumber + currentNumber;
             document.getElementById(id).innerText = totalAmount;
         }
-    });
-
-    // withdraw event handler
-
-    
-
+// function updateDepositWithdrawBalance(id,withNum){
+//             const current = document.getElementById(id).innerText;
+//             const currentNumber = parseFloat(current);
+//             const totalAmount = withNum + currentNumber;
+//             document.getElementById(id).innerText = totalAmount;
+//         }
 
 
 
