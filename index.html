@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Bank</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- log in area -->
+    <div id="login-area">
+        <h1 class="text-center">Welcome to Economic Bank</h1>
+        <div class="submit-area">
+            <input type="text"  class="form-control" placeholder="e-mail"><br>
+            <input type="password" class="form-control" placeholder="password"><br>
+            <!-- button id is used for calling using js: getElementById -->
+            <button id="login" class="btn btn-success">Enter</button>
+        </div>
+    </div>
+
+
+    <!-- hidden area before enter -->
+
+    <div id="transaction-area">
+        <h1>transaction-area</h1>
+    </div>
+
+
+
+
+    <!-- our js -->
+    <script>
+
+//    pick the id and save to a variable/const 
+    const loginBtn = document.getElementById("login");
+    // adding event listener and passing parameter (min -2 ) to that listener
+    loginBtn.addEventListener("click",function(){
+
+        // click is an event name : 1st parameter
+        // function is the 2nd parameter which will define the action on click
+        // console.log("Ha ha ha");
+
+        //hiding the elements on click
+        const loginArea = document.getElementById("login-area");
+        
+        loginArea.style.display="none";
+        // showing the transaction area
+        const transArea = document.getElementById("transaction-area");
+        transArea.style.display="block";
+        
+
+    });
+    </script>
+</body>
+</html>
